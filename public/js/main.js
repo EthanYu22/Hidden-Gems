@@ -16,3 +16,15 @@ function loadScript(path) {
   script.src = path;
   body.appendChild(script);
 }
+
+function getToday() {
+    // Getting date
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var year = today.getFullYear();
+
+    today = mm + '-' + dd + '-' + year;
+
+    return today;
+}

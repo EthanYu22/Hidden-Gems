@@ -5,6 +5,7 @@ var Location = function (id, makerid, date, coord, description, title, rating) {
   this.description = description || "";
   this.title = title || "";
   this.rating = rating || 0;
+  makerid = 'testing';
 
   // This is the required variables
   if (!coord || !makerid)
@@ -18,12 +19,48 @@ var Location = function (id, makerid, date, coord, description, title, rating) {
   this.marker = new Marker(coord, content);
 }
 
+var fb_btn_func = null;
+
 Location.prototype = {
   constructor: Location,
   drawMarker: function () {
+    var that = this;
     // Drawing the marker for this location
     // NOTE: A location might be declared without marker present
-    this.marker.draw();
+    var google_marker = this.marker.draw();
+
+    google.maps.event.addListener(google_marker, 'click', function () {
+      $('#location-title').text(that.title);
+      $("#location-description").text(that.description);
+
+      $('#location-modal').modal('show');
+
+
+      // Add event listener for feedback button
+      var fb_btn = document.getElementById('fb-btn');
+      // Remove previous listener
+      if (fb_btn_func) {
+        fb_btn.removeEventListener('click', fb_btn_func);
+      }
+
+      // Make a new version of listener
+      fb_btn_func = function () {
+        var fbRef = database.ref('feedbacks/' + that.id).push();
+
+        // TODO: Get the real userid
+        var fakeuserid = 0;
+        // Getting the feedback text
+        var feedback = document.getElementById('fb-input').value;
+
+        fbRef.set({
+          userid: fakeuserid,
+          text: feedback,
+          date: getToday()
+        })
+      }
+      fb_btn.addEventListener('click', fb_btn_func);
+    });
+
   },
   deleteMarker: function () {
     // Simply call the marker.delete() function

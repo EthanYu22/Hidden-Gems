@@ -5,14 +5,6 @@ document.getElementById('post-btn').addEventListener('click', function () {
     var description = document.getElementById('description').value || "";
     var coord = {lat: localStorage.lat, lng: localStorage.lng};
 
-    // Getting date
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-    var year = today.getFullYear();
-
-    today = mm + '-' + dd + '-' + year;
-
     // NOTE: Should be deleted later.
     var makerid = 'Testing';
 
@@ -29,7 +21,7 @@ function saveLocation (makerid, date, coord, description, title) {
     // Now start saving the details of the node (post) into database
     locationRef.set({
         makerid: makerid,
-        date: date,
+        date: getToday(),
         coord: coord,
         description: description,
         title: title

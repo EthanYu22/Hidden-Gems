@@ -31,6 +31,21 @@
       margin: 0 20px 0 30px;
       width: 200px;
     }
+    
+    .location-thumbnails {
+      width: 150px;
+      height: 75px;
+    }
+    
+    #location-title {
+      font-weight: bold;
+      font-size: 25px;
+    }
+    
+    #fb-input {
+      width: 100%;
+      margin-bottom: 20px;
+    }
   </style>
   <!-- End of styles for map -->
 </head>
@@ -40,6 +55,30 @@
   <div id="search-form">
     <input id="loc" class="form-control" placeholder="Address or Zip Code"></input>
     <button id="search-btn" class="btn btn-primary">Search</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="location-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div id="location-title">Title</div>
+          <div id="location-body">
+            <p id="location-description">Description</p>
+            <div id="photo-thumbnail">
+              <img class="location-thumbnails" src="https://dnnmyvak1.blob.core.windows.net/portals/0/Images/OG/og-2013-boardwalk-di2.jpg?sr=b&si=DNNFileManagerPolicy&sig=ZrdY4o4nB3WkCaHDq02pth%2FkUQPoVcoAtjUNZsv3Fm0%3D"></img>
+            </div>
+          </div>
+          <a href="#">
+            <p id="view-fb">View Feedbacks</p>
+          </a>
+          <div id="location-fb">
+            <textarea rows="5" id="fb-input"></textarea>
+            <button class="btn btn-primary" id="fb-btn">Post</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="js/jquery.js"></script>
