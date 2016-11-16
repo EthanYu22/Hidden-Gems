@@ -1,0 +1,65 @@
+<html>
+
+<head>
+
+  <!-- General styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="css/et-line-font.css">
+  <link rel="stylesheet" href="css/nivo-lightbox.css">
+  <link rel="stylesheet" href="css/nivo_themes/default/default.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+  <!-- End of general styles -->
+
+  <!-- Styles for map -->
+  <style>
+    #map {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+    
+    #search-form {
+      display: flex;
+      margin-top: 50px;
+      position: relative;
+    }
+    
+    #search-form .form-control {
+      margin: 0 20px 0 30px;
+      width: 200px;
+    }
+  </style>
+  <!-- End of styles for map -->
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="search-form">
+    <input id="loc" class="form-control" placeholder="Address or Zip Code"></input>
+    <button id="search-btn" class="btn btn-primary">Search</button>
+  </div>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/smoothscroll.js"></script>
+  <script src="js/isotope.js"></script>
+  <script src="js/imagesloaded.min.js"></script>
+  <script src="js/nivo-lightbox.min.js"></script>
+  <script src="js/jquery.backstretch.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/custom.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+  <!-- End of Firebase -->
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMPfebgDph8umAdPgVzXOlxIIbecgVvII"></script>
+  <script src="js/main.js"></script>
+  <script src="js/map.js"></script>
+
+</body>
+
+</html>
