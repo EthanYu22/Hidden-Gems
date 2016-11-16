@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Let Us Learn About You</title>
+<link rel="stylesheet" type="text/css" href="css/view.css" media="all">
+<script src="js/jquery.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/view.js"></script>
+
+
+</head>
+<body id="main_body" >
+	<div id="form_container">
+		<h1><a>Let Us Learn About You</a></h1>
+		<form id="form_4691" class="appnitro"  method="post" action="">
+			<div class="form_description">
+			    <h2>Who Are You?</h2>
+			    <p>This is your profile description. Click here to edit.</p>
+		    </div>						
+			
+            <ul >
+			
+			    <li id="li_1" >
+		            <label class="description" for="element_1">Name </label>
+		                <span>
+			                <input id="fr-name" name= "element_1_1" class="element text" maxlength="255" size="8" value=""/>
+			                <label>First</label>
+		                </span>
+		
+                        <span>
+			                <input id="ls-name" name= "element_1_2" class="element text" maxlength="255" size="14" value=""/>
+			                <label>Last</label>
+		                </span> 
+		        </li>		
+                
+                <li id="li_2" >
+		            <label class="description" for="element_2">Email </label>
+		                <div>
+			                <input id="email" name="element_2" class="element text medium" type="text" maxlength="255" value=""/> 
+		                </div> 
+		        </li>		
+                
+                <li id="gender-li" >
+		                <label class="description" for="element_5">Gender </label>
+		                    <span>
+			                    <input id="man-c" name="element_5" class="element radio" type="radio" value="1" />
+                                <label class="choice" for="element_5_1">Male</label>
+
+                                <input id="girl-c" name="element_5" class="element radio" type="radio" value="2" />
+                                <label class="choice" for="element_5_2">Female</label>
+
+                                <input id="other-c" name="element_5" class="element radio" type="radio" value="3" />
+                                <label class="choice" for="element_5_3">Other</label>
+
+		                    </span> 
+		        </li>		
+                
+                <li id="li_3" >
+		            <label class="description" for="element_3">Age </label>
+		                <div>
+			                <input id="age" name="element_3" class="element text small" type="text" maxlength="255" value=""/> 
+		                </div> 
+	        	</li>		
+                
+                <li id="li_4" >
+		            <label class="description" for="element_4">Bio </label>
+	                	<div>
+			                <textarea id="bio" name="element_4" class="element textarea small"></textarea> 
+		                </div> 
+	        	</li>
+            </ul>
+            <button id="btn">Continue</button>
+		</form>	
+	</div>
+	</body>
+</html>

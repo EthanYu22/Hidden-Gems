@@ -1,10 +1,78 @@
 <html>
 
 <head>
+
+  <!-- General styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/et-line-font.css">
+	<link rel="stylesheet" href="css/nivo-lightbox.css">
+	<link rel="stylesheet" href="css/nivo_themes/default/default.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+  <!-- End of general styles -->
+
+  <!-- Styles for map -->
+  <style>
+    #map {
+      margin-top: 100px;
+      height: 600px;
+      width: 100%;
+    }
+    #search-form {
+      display: flex;
+    }
+    #search-form .form-control {
+      margin: 0 20px 0 30px;
+      width: 200px;
+    }
+  </style>
+  <!-- End of styles for map -->
 </head>
 
 <body>
-  You have arrived at dashbaord. Good luck with doing your stuffs.
+  <h1>Congratulation! You have logged in!</h1>
+  <button id="signout-btn" class="btn btn-danger">Sign Out</button>
+
+  <input type="password" class="form-control" id="user-pass" placeholder="New Password"></input>
+  <button id="pass-btn" class="btn btn-danger">Change Password</button>
+
+  <button id="del-btn" class="btn btn-danger">Delete Myself</button>
+
+  <h3>Go to places using search function</h3>
+
+  <div id="search-form">
+    <input id="loc" class="form-control" placeholder="Address or Zip Code"></input>
+    <button id="search-btn" class="btn btn-primary">Search</button>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/smoothscroll.js"></script>
+  <script src="js/isotope.js"></script>
+  <script src="js/imagesloaded.min.js"></script>
+  <script src="js/nivo-lightbox.min.js"></script>
+  <script src="js/jquery.backstretch.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/users.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+  <script src="js/auth.js"></script>
+  <!-- End of Firebase -->
+
+  <script>
+  // Making sure that the user is really logged in
+  firebase.auth().onAuthStateChanged(function(currentUser) {
+    if (!currentUser) {
+      window.location.href = "./index.html";
+    }
+  });
+</script>
 </body>
 
 </html>
