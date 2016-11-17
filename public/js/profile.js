@@ -1,4 +1,5 @@
-﻿$('#btn').click(function () {
+﻿function log_user() {
+
     var fn = document.getElementById('fr-name');
     var ln = document.getElementById('ls-name');
     var email = document.getElementById('email');
@@ -14,4 +15,9 @@
     console.log(bio);
 
     console.log("Finish Logging");
-});
+
+    /*var su = users(fn, ln, email);
+    console.log(su);
+    
+    su.updateUser(fn,ln,email,gender,age,bio);*/
+}
