@@ -8,12 +8,12 @@ document.getElementById('post-btn').addEventListener('click', function () {
     // NOTE: Should be deleted later.
     var makerid = 'Testing';
 
-    saveLocation(makerid, today, coord, description, title);
+    saveLocation(makerid, coord, description, title);
     //savePost({lat: lat, lng: lng}, loc, title, short_desc, long_desc);
 })
 
 // Save data to database
-function saveLocation (makerid, date, coord, description, title) {
+function saveLocation (makerid, coord, description, title) {
     // Generate a new unique ID under posts/ database
     // and create the node for this post
     var locationRef = database.ref('locations/').push();
