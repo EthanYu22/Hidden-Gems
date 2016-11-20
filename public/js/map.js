@@ -126,3 +126,29 @@ document.getElementById('search-btn').addEventListener('click', function () {
   // Trigger a click to open the pop up 
   google.maps.event.trigger(map.pin_drop.google_marker, 'mouseover');
 })
+
+// Listenning to view-feedback click
+// Display if not, or un-display if it is
+document.getElementById('view-fb').addEventListener('click', function () {
+  var location_fb = document.getElementById('location-fb');
+  if (location_fb.style.display == 'none')
+    location_fb.style.display = 'block';    
+  else
+    location_fb.style.display = 'none';    
+
+  // Get feedbacks
+  if (!global_loc) return;
+
+  var fbRef = database.ref('feedbacks/' + global_loc.id);
+
+  fbRef.once ('value', function (snapshot) {
+    snapshot.forEach (function (childSnapshot) {
+      var data = childSnapshot.val();
+      
+      // Append comments into location-fb <div>
+      var el = document.createElement('p');
+      el.innerText = data.text;
+      document.getElementById('location-fb').appendChild(el);      
+    })
+  })
+})

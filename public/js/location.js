@@ -19,7 +19,8 @@ var Location = function (id, makerid, date, coord, description, title, rating) {
   this.marker = new Marker(coord, content);
 }
 
-var fb_btn_func = null;
+var post_btn_func = null;
+var global_loc = null;
 
 Location.prototype = {
   constructor: Location,
@@ -37,14 +38,13 @@ Location.prototype = {
 
 
       // Add event listener for feedback button
-      var fb_btn = document.getElementById('fb-btn');
+      var post_btn = document.getElementById('fb-btn');
       // Remove previous listener
-      if (fb_btn_func) {
-        fb_btn.removeEventListener('click', fb_btn_func);
-      }
+      if (post_btn_func)
+        post_btn.removeEventListener('click', post_btn_func);
 
       // Make a new version of listener
-      fb_btn_func = function () {
+      post_btn_func = function () {
         var fbRef = database.ref('feedbacks/' + that.id).push();
 
         // TODO: Get the real userid
@@ -57,8 +57,13 @@ Location.prototype = {
           text: feedback,
           date: getToday()
         })
+
+        alert ("Successfully posted a comment");
       }
-      fb_btn.addEventListener('click', fb_btn_func);
+      // Set listener
+      post_btn.addEventListener('click', post_btn_func);
+
+      global_loc = that;
     });
 
   },
