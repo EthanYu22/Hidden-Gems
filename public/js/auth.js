@@ -1,16 +1,14 @@
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyB4KoM-qrygjw1NjyaF0vCLDTl_jtXB5-w",
-  authDomain: "hidden-gems-64c2b.firebaseapp.com",
-  databaseURL: "https://hidden-gems-64c2b.firebaseio.com",
-  storageBucket: "hidden-gems-64c2b.appspot.com",
-  messagingSenderId: "88207039041"
-};
-firebase.initializeApp(config);
-
+loadScript("js/users.js");
 //Global Variables
 
-var su = new users("", "", "");
+var su = null;
+
+// After the page has fully loaded,
+// load su to prevent errors.
+window.onload = function () {
+  // Set up su
+  su = new users("", "", "");
+}
 
 /* This section is for signup scripts */
 

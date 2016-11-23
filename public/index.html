@@ -430,10 +430,18 @@
 
 	<!-- Firebase -->
 	<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
-	<script src="js/users.js"></script>
+	<script src="js/main.js"></script>
 	<script src="js/auth.js"></script>
 	<!-- End of Firebase -->
-
+  <script>
+  // Making sure that the user is really logged in
+  firebase.auth().onAuthStateChanged(function(currentUser) {
+	  console.log(currentUser);
+    if (currentUser) {
+      window.location.href = "./dashboard.html";
+    }
+  });
+  </script>
 </body>
 
 </html>

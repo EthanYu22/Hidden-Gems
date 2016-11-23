@@ -97,7 +97,17 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMPfebgDph8umAdPgVzXOlxIIbecgVvII"></script>
   <script src="js/main.js"></script>
   <script src="js/map.js"></script>
+  <script src="js/auth.js"></script>
+  <!-- End of Firebase -->
 
+  <script>
+  // Making sure that the user is really logged in
+  firebase.auth().onAuthStateChanged(function(currentUser) {
+    if (!currentUser) {
+      window.location.href = "./index.html";
+    }
+  });
+  </script>
 </body>
 
 </html>
