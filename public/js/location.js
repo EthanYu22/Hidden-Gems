@@ -24,6 +24,7 @@ var fakeuserid = 0;
 
 var post_btn_func = null;
 var upload_photo_func = null;
+var direction_func = null;
 
 var global_loc = null;
 
@@ -113,6 +114,20 @@ Location.prototype = {
       upload_field.addEventListener('change', upload_photo_func);
 
       /***** End of uploading picture section *****/
+
+      /***** Start of direction section */
+      var direction_btn = document.getElementById('direction-btn');
+      if (direction_func)
+        direction_btn.removeEventListener('click', direction_func);
+
+      direction_func = function () {
+        var url = "http://maps.google.com/maps?daddr=" + that.coord.lat + "," +
+                  that.coord.lng;
+        window.open(url, '_blank');
+      }
+
+      direction_btn.addEventListener('click', direction_func);
+      /***** End of direction section */
 
       // Saving global_loc so that we can access what location we're
       // looking at later.

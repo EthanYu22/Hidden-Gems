@@ -73,7 +73,9 @@
             </div>
             Upload more photo: <input id="upload-photo" type="file" name="file"></input>
           </div>
-          <br /><br />
+          <br />
+          <button id="direction-btn" class="btn btn-primary">Get direction</button>
+          <br />
           <a href="#"> <p id="view-fb">View Feedbacks</p> </a>
           <div id="location-fb" style="display:none;">
             <textarea rows="5" id="fb-input"></textarea>
@@ -104,14 +106,6 @@
   <script src="js/auth.js"></script>
   <!-- End of Firebase -->
 
-  <script>
-  // Making sure that the user is really logged in
-  firebase.auth().onAuthStateChanged(function(currentUser) {
-    if (!currentUser) {
-      window.location.href = "./index.html";
-    }
-  });
-  </script>
 </body>
 
 </html>
