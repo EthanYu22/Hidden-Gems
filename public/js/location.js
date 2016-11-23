@@ -80,13 +80,20 @@ Location.prototype = {
 
       // Make a new version of listener
       upload_photo_func = function (evt) {
+        // Making sure that it's an image file
+        var re = /\.(jpe?g|png)$/i;
+        if (!re.exec(evt.target.files[0].name)) {
+          alert ("Error: only accepting jpg, jpeg, and png files");
+          return;
+        }
+
         /* Save into storage first */
         var storageRef = firebase.storage().ref().child(uuid());
 
         storageRef.put(evt.target.files[0]).then(function (snapshot) {
           /* Now make a database query for saving the picture under this
            * post */
-          var url = snapshot.downloadURL
+          var url = snapshot.downloadURL;
           var picRef = firebase.database().ref('images/' + that.id).push();
 
           picRef.set({
