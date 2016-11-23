@@ -20,8 +20,6 @@ var Location = function (id, makerid, date, coord, description, title, rating) {
 }
 
 // TODO: Get the real userid
-var fakeuserid = 0;
-
 var post_btn_func = null;
 var upload_photo_func = null;
 var direction_func = null;
@@ -58,7 +56,7 @@ Location.prototype = {
         var feedback = document.getElementById('fb-input').value;
 
         fbRef.set({
-          userid: fakeuserid,
+          userid: userid,
           text: feedback,
           date: getToday()
         }, function (error) {
@@ -98,7 +96,7 @@ Location.prototype = {
           var picRef = firebase.database().ref('images/' + that.id).push();
 
           picRef.set({
-            userid: fakeuserid,
+            userid: userid,
             url: url,
             date: getToday()
           }, function (error) {
