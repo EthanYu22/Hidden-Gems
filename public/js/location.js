@@ -19,7 +19,12 @@ var Location = function (id, makerid, date, coord, description, title, rating) {
   this.marker = new Marker(coord, content);
 }
 
+// TODO: Get the real userid
+var fakeuserid = 0;
+
 var post_btn_func = null;
+var upload_photo_func = null;
+
 var global_loc = null;
 
 Location.prototype = {
@@ -36,6 +41,7 @@ Location.prototype = {
 
       $('#location-modal').modal('show');
 
+      /***** This whole part is for feedbacks *****/
 
       // Add event listener for feedback button
       var post_btn = document.getElementById('fb-btn');
@@ -47,8 +53,6 @@ Location.prototype = {
       post_btn_func = function () {
         var fbRef = database.ref('feedbacks/' + that.id).push();
 
-        // TODO: Get the real userid
-        var fakeuserid = 0;
         // Getting the feedback text
         var feedback = document.getElementById('fb-input').value;
 
@@ -66,6 +70,45 @@ Location.prototype = {
       // Set listener
       post_btn.addEventListener('click', post_btn_func);
 
+      /***** End of feedbacks section *****/
+
+      /***** This part is for uploading picture listeners *****/
+      var upload_field = document.getElementById('upload-photo');
+      // Remove previous listener
+      if (upload_photo_func)
+        upload_field.removeEventListener('change', upload_photo_func);
+
+      // Make a new version of listener
+      upload_photo_func = function (evt) {
+        /* Save into storage first */
+        var storageRef = firebase.storage().ref().child(uuid());
+
+        storageRef.put(evt.target.files[0]).then(function (snapshot) {
+          /* Now make a database query for saving the picture under this
+           * post */
+          var url = snapshot.downloadURL
+          var picRef = firebase.database().ref('images/' + that.id).push();
+
+          picRef.set({
+            userid: fakeuserid,
+            url: url,
+            date: getToday()
+          }, function (error) {
+            if (error)
+              console.error(error);
+            else
+              alert("Successfully uploaded photo");
+          });
+
+        })
+      }
+      // Set listener
+      upload_field.addEventListener('change', upload_photo_func);
+
+      /***** End of uploading picture section *****/
+
+      // Saving global_loc so that we can access what location we're
+      // looking at later.
       global_loc = that;
 
       // Make sure that the feedbacks section is hidden
