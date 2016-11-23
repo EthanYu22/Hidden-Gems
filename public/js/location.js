@@ -56,9 +56,12 @@ Location.prototype = {
           userid: fakeuserid,
           text: feedback,
           date: getToday()
+        }, function (error) {
+          if (error)
+            console.error(error);
+          else
+            alert("Successfully posted a comment");
         })
-
-        alert ("Successfully posted a comment");
       }
       // Set listener
       post_btn.addEventListener('click', post_btn_func);
