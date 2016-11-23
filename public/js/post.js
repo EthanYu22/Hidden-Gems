@@ -3,6 +3,11 @@ document.getElementById('post-btn').addEventListener('click', function() {
     // Name of location (address or simply title)
     var title = document.getElementById('title').value || "";
     var description = document.getElementById('description').value || "";
+    if (title == "" || description == "") {
+        alert ("Title and Description are required to save this location.");
+        return;
+    }
+
     var coord = { lat: localStorage.lat, lng: localStorage.lng };
 
     saveLocation(userid, coord, description, title);
@@ -25,7 +30,9 @@ function saveLocation(makerid, coord, description, title) {
     }, function(error) {
         if (error)
             console.error(error);
-        else
-            alert("Successfully saved location")
+        else {
+            alert("Successfully saved location");
+            window.location.href = "./map.html";
+        }
     });
 }

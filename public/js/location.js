@@ -53,17 +53,24 @@ Location.prototype = {
         var fbRef = database.ref('feedbacks/' + that.id).push();
 
         // Getting the feedback text
-        var feedback = document.getElementById('fb-input').value;
+        var feedback = document.getElementById('fb-input');
+        if (!feedback.value) {
+          alert("Feedback cannot be blank.");
+          return;
+        }
 
         fbRef.set({
           userid: userid,
-          text: feedback,
+          text: feedback.value,
           date: getToday()
         }, function (error) {
           if (error)
             console.error(error);
-          else
+          else {
             alert("Successfully posted a comment");
+            // Clear the feedback input
+            feedback.value = "";
+          }
         })
       }
       // Set listener
@@ -82,7 +89,7 @@ Location.prototype = {
         // Making sure that it's an image file
         var re = /\.(jpe?g|png)$/i;
         if (!re.exec(evt.target.files[0].name)) {
-          alert ("Error: only accepting jpg, jpeg, and png files");
+          alert("Error: only accepting jpg, jpeg, and png files");
           return;
         }
 
@@ -120,7 +127,7 @@ Location.prototype = {
 
       direction_func = function () {
         var url = "http://maps.google.com/maps?daddr=" + that.coord.lat + "," +
-                  that.coord.lng;
+          that.coord.lng;
         window.open(url, '_blank');
       }
 
