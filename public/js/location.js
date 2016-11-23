@@ -111,8 +111,13 @@ Location.prototype = {
       // looking at later.
       global_loc = that;
 
+      // Display images;
+      that.display_thumbnails();
+
       // Make sure that the feedbacks section is hidden
       document.getElementById('location-fb').style.display = 'none';
+      // Make sure to clear upload_field
+      upload_field.value = null;
     });
 
   },
@@ -140,6 +145,39 @@ Location.prototype = {
       title: this.title,
       rating: this.rating
     });
+  },
+  display_thumbnails: function () {
+    var photos = document.getElementById('photo-thumbnail');
+
+    // Just like feedbacks, make a wrapper
+    // In case couldn't get the location object
+    if (!global_loc) return;
+
+    // Do a few checkings to make sure that the old feedbacks are deleted
+    var thumbnail_wrapper = document.getElementById('thumbnail-wrapper');
+    // If feedbacks have already been present, delete it
+    if (thumbnail_wrapper)
+      photos.removeChild(thumbnail_wrapper);
+    // Append fb-display div into location-fb
+    var el = document.createElement('div');
+    el.id = 'thumbnail-wrapper';
+    photos.appendChild(el);
+
+    var imgRef = database.ref('images/' + global_loc.id);
+
+    imgRef.once('value', function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        var data = childSnapshot.val();
+
+        // Get reference to the fb-display div
+        thumbnail_wrapper = document.getElementById('thumbnail-wrapper');
+        // Display all the comments
+        var el = document.createElement('img');
+        el.src = data.url;
+        el.className = 'location-thumbnails';
+        thumbnail_wrapper.appendChild(el);
+      })
+    })
   }
 }
 
