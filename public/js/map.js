@@ -109,7 +109,7 @@ document.getElementById('search-btn').addEventListener('click', function () {
   // Grab the location in the box
   var loc = document.getElementById('loc').value;
   var coord = map.addressToCoordinates(loc);
-  var latlng = {lat: coord.lat, lng: coord.lng};
+  var latlng = { lat: coord.lat, lng: coord.lng };
 
   // Check if a pin_drop is present
   if (map.pin_drop) map.pin_drop.delete();
@@ -132,23 +132,37 @@ document.getElementById('search-btn').addEventListener('click', function () {
 document.getElementById('view-fb').addEventListener('click', function () {
   var location_fb = document.getElementById('location-fb');
   if (location_fb.style.display == 'none')
-    location_fb.style.display = 'block';    
+    location_fb.style.display = 'block';
   else
-    location_fb.style.display = 'none';    
+    location_fb.style.display = 'none';
 
-  // Get feedbacks
+  // In case couldn't get the location object
   if (!global_loc) return;
+
+  // Try to make a <div> to contain all the feedbacks
+  var location_fb = document.getElementById('location-fb');
+  // Do a few checkings to make sure that the old feedbacks are deleted
+  var fb_display = document.getElementById('fb-display');
+  // If feedbacks have already been present, delete it
+  if (fb_display)
+    location_fb.removeChild(fb_display);
+  // Append fb-display div into location-fb
+  var el = document.createElement('div');
+  el.id = 'fb-display';
+  location_fb.appendChild(el);
 
   var fbRef = database.ref('feedbacks/' + global_loc.id);
 
-  fbRef.once ('value', function (snapshot) {
-    snapshot.forEach (function (childSnapshot) {
+  fbRef.once('value', function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
       var data = childSnapshot.val();
-      
-      // Append comments into location-fb <div>
+
+      // Get reference to the fb-display div
+      fb_display = document.getElementById('fb-display');
+      // Display all the comments
       var el = document.createElement('p');
       el.innerText = data.text;
-      document.getElementById('location-fb').appendChild(el);      
+      fb_display.appendChild(el);
     })
   })
 })

@@ -64,6 +64,9 @@ Location.prototype = {
       post_btn.addEventListener('click', post_btn_func);
 
       global_loc = that;
+
+      // Make sure that the feedbacks section is hidden
+      document.getElementById('location-fb').style.display = 'none';
     });
 
   },
