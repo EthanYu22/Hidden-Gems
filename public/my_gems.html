@@ -14,8 +14,18 @@
 
   <style>
     .wrapper {
+      display: flex;
+    }
+    
+    .locations {
       margin: 0 auto;
       text-align: center;
+      width: 50%;
+    }
+    #feedbacks {
+      margin: 0 auto;
+      text-align: center;
+      width:50%;
     }
   </style>
 
@@ -23,10 +33,15 @@
 
 <body>
   <div class="wrapper">
-    <div id="my-gems">
-      <h2>The gems you have posted</h2>
+    <div class="locations">
+      <div id="my-gems">
+        <h2>The gems you have posted</h2>
+      </div>
+      <a href="./dashboard.html"><button class="btn btn-primary">Back to Dashboard</button></a>
     </div>
-    <a href="./dashboard.html"><button class="btn btn-primary">Back to Dashboard</button></a>
+    <div id="feedbacks">
+        <h2>Your recent feedbacks</h2>
+      </div>
   </div>
 
   <script src="js/jquery.js"></script>
