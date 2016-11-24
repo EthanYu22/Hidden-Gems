@@ -21,17 +21,20 @@
       width: 100%;
     }
     
-    #search-form {
-      display: flex;
-      margin-top: 50px;
+    .wrapper {
+      margin: 100px 0 0 30px;
       position: relative;
     }
     
+    #search-form {
+      display: flex;
+    }
+    
     #search-form .form-control {
-      margin: 0 20px 0 30px;
+      margin-right: 20px;
       width: 200px;
     }
-
+    
     #photo-thumbnail {
       display: flex;
     }
@@ -56,9 +59,13 @@
 
 <body>
   <div id="map"></div>
-  <div id="search-form">
-    <input id="loc" class="form-control" placeholder="Address or Zip Code"></input>
-    <button id="search-btn" class="btn btn-primary">Search</button>
+  <div class="wrapper">
+    <div id="search-form">
+      <input id="loc" class="form-control" placeholder="Address or Zip Code"></input>
+      <button id="search-btn" class="btn btn-primary">Search</button>
+    </div>
+    <br />
+    <a href="./dashboard.html"><button class="btn btn-primary">Back to Dashboard</button></a>
   </div>
 
   <!-- Modal -->
@@ -76,7 +83,9 @@
           <br />
           <button id="direction-btn" class="btn btn-primary">Get direction</button>
           <br />
-          <a href="#"> <p id="view-fb">View Feedbacks</p> </a>
+          <a href="#">
+            <p id="view-fb">View Feedbacks</p>
+          </a>
           <div id="location-fb" style="display:none;">
             <textarea rows="5" id="fb-input"></textarea>
             <button class="btn btn-primary" id="fb-btn">Post</button>
