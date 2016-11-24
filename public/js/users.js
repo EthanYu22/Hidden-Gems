@@ -36,14 +36,12 @@ users.prototype.updateUser = function(fn, ln, email, gender, age, bio) {
 	
 	// Now start saving the details of the node (user) into database
 	editUser.set({
-		userID:{
 			firstname: fn,
 			lastname: ln,
 			email: email,
 			gender: gender,
 			age: age,
 			bio: bio
-		}
 	});
 }
 
