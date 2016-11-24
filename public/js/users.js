@@ -35,7 +35,8 @@ users.prototype.updateUser = function(fn, ln, email, gender, age, bio) {
     var editUser = database.ref('users/').push();
 	
 	// Now start saving the details of the node (user) into database
-	editUser.set({
+    editUser.set({
+            id: userid,
 			firstname: fn,
 			lastname: ln,
 			email: email,
@@ -74,5 +75,4 @@ users.prototype.deleteUser = function() {
 users.prototype.printUser = function () {
     console.log(this.firstname, this.lastname, this.email);
 };
-
 
