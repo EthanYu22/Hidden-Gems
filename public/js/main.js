@@ -18,18 +18,18 @@ function loadScript(path) {
 }
 
 function getToday() {
-    // Getting date
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-    var year = today.getFullYear();
+  // Getting date
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1;
+  var year = today.getFullYear();
 
-    today = mm + '-' + dd + '-' + year;
+  today = mm + '-' + dd + '-' + year;
 
-    return today;
+  return today;
 }
 
-function uuid () {
+function uuid() {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 32 characters
   // after the decimal.
@@ -38,12 +38,13 @@ function uuid () {
 
 var userid = null;
 
-// Making sure that the user is really logged in
-firebase.auth().onAuthStateChanged(function(user) {
+if (!window.location.href.includes('index.html')) {
+  // Making sure that the user is really logged in
+  firebase.auth().onAuthStateChanged(function (user) {
     if (!user) {
-        window.location.href = "./index.html";
-        return;
+      window.location.href = "./index.html";
+      return;
     }
     userid = user.uid;
-});
-
+  });
+}
