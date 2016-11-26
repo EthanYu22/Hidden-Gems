@@ -18,7 +18,7 @@ var users = function(firstname, lastname, email) {
 
 // Function to update user object variables ( not firebase ) -- see updateUser() for firebase 
 users.prototype.editUser = function(id, firstname, lastname, email, gender, age, bio) {
-	this.id = id;
+	this.id = id || null;
 	this.firstname = firstname;
 	this.lastname = lastname;
 	this.email = email;
@@ -32,11 +32,10 @@ users.prototype.updateUser = function(fn, ln, email, gender, age, bio) {
 
     // Generate a new unique ID under posts/ database
     // and create the node for this post
-    var editUser = database.ref('users/').push();
+	var editUser = database.ref('users/' + this.id);
 	
 	// Now start saving the details of the node (user) into database
     editUser.set({
-            id: userid,
 			firstname: fn,
 			lastname: ln,
 			email: email,
@@ -52,10 +51,10 @@ users.prototype.updatePassword = function(password) {
 
     user.updatePassword(password).then(function() {
         //Update Successful
-        console.log("Password successfully changed");
+        alert("Password successfully changed");
     }, function(error) {
         // Error happened
-        console.log("An error has occured");
+        alert("An error has occured");
     });        
 };
 
