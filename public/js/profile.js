@@ -2,7 +2,6 @@
 
     var fn = document.getElementById('fr').value;
     var ln = document.getElementById('ls-name').value;
-    var email = document.getElementById('email').value;
     var gender = document.getElementById('gender-c').value;
     var g = "";
     var age = document.getElementById('age').value;
@@ -18,9 +17,9 @@
     console.log("Finish Logging");
 
     //Testing on updating user into firebase
-    var su = new users(fn, ln, email);
-    su.editUser(userid, fn, ln, email, gender, age, bio);
-    su.updateUser(fn, ln, email, gender, age, bio);
+    var su = new users(fn, ln);
+    su.editUser(userid, fn, ln, gender, age, bio);
+    su.updateUser(fn, ln, gender, age, bio);
 
     //su.updateUser("tim", "yue", "test12@hg.com", "male", 21, "hello");
 }
@@ -40,7 +39,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         var data = snapshot.val();
         document.getElementById('fr').value = data.firstname;
         document.getElementById('ls-name').value = data.lastname;
-        document.getElementById('email').value = data.email;
         document.getElementById('gender-c').value = data.gender;
         document.getElementById('age').value = data.age;
         document.getElementById('bio').value = data.bio;

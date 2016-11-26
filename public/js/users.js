@@ -10,25 +10,23 @@
 */
 
 // Constructor 
-var users = function(firstname, lastname, email) {
+var users = function(firstname, lastname) {
 	this.firstname = firstname;
 	this.lastname = lastname;
-	this.email = email;
 };
 
 // Function to update user object variables ( not firebase ) -- see updateUser() for firebase 
-users.prototype.editUser = function(id, firstname, lastname, email, gender, age, bio) {
+users.prototype.editUser = function(id, firstname, lastname, gender, age, bio) {
 	this.id = id || null;
 	this.firstname = firstname;
 	this.lastname = lastname;
-	this.email = email;
 	this.gender = gender;
 	this.age = age;
 	this.bio = bio;
 };
 
 // Function to load user data into firebase table
-users.prototype.updateUser = function(fn, ln, email, gender, age, bio) {
+users.prototype.updateUser = function(fn, ln, gender, age, bio) {
 
     // Generate a new unique ID under posts/ database
     // and create the node for this post
@@ -38,7 +36,6 @@ users.prototype.updateUser = function(fn, ln, email, gender, age, bio) {
     editUser.set({
 			firstname: fn,
 			lastname: ln,
-			email: email,
 			gender: gender,
 			age: age,
 			bio: bio
@@ -72,6 +69,6 @@ users.prototype.deleteUser = function() {
 
 // Logs the users first name , last name, and email in the console
 users.prototype.printUser = function () {
-    console.log(this.firstname, this.lastname, this.email);
+    console.log(this.firstname, this.lastname);
 };
 
