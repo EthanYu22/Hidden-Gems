@@ -1,0 +1,89 @@
+<html>
+
+<head>
+  <!-- General styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="css/et-line-font.css">
+  <link rel="stylesheet" href="css/nivo-lightbox.css">
+  <link rel="stylesheet" href="css/nivo_themes/default/default.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+  <!-- End of general styles -->
+
+  <style>
+    .wrapper {
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .input-wrapper {
+      width: 20%;
+      margin: 20px auto 30px auto;
+    }
+    
+    .input-wrapper input {
+      margin-bottom: 20px;
+    }
+    
+    .btn-wrapper {
+      display: block;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <h2>Change password</h2>
+    <div class="input-wrapper">
+      <input id="old-passwd" class="form-control" placeholder="Old Password"></input>
+      <input id="new-passwd" class="form-control" placeholder="New Password"></input>
+    </div>
+    <div class="btn-wrapper">
+      <button id="passwd-btn" onclick="updatePassword()" class="btn btn-primary">Submit</button>
+      <a href="./dashboard.html"><button class="btn btn-danger">Back to Dashboard</button></a>
+    </div>
+  </div>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/smoothscroll.js"></script>
+  <script src="js/isotope.js"></script>
+  <script src="js/imagesloaded.min.js"></script>
+  <script src="js/nivo-lightbox.min.js"></script>
+  <script src="js/jquery.backstretch.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/custom.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+  <script src="js/main.js"></script>
+  <!-- End of Firebase -->
+  <script>
+  function updatePassword() {
+    var user = firebase.auth().currentUser;
+
+    var passwd = document.getElementById('new-passwd').value;
+    var old_passwd = document.getElementById('old-passwd').value;
+
+    var credential = firebase.auth.EmailAuthProvider.credential (user.email, old_passwd);
+
+    if (passwd) {
+      // Reauthenticate
+      user.reauthenticate(credential).then (function (){
+        user.updatePassword(passwd).then (function () {
+          alert ("Successfully updated password");
+        }, function (error) {
+          alert (error.message);
+        })
+      }, function (error) {
+        alert (error.message);
+      })
+    }
+  }
+ </script>
+</body>
+
+</html>

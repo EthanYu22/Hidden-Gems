@@ -10,9 +10,10 @@
 */
 
 // Constructor 
-var users = function(firstname, lastname) {
-	this.firstname = firstname;
-	this.lastname = lastname;
+var users = function(id, firstname, lastname) {
+	this.id = null;
+	this.firstname = firstname || "";
+	this.lastname = lastname || "";
 };
 
 // Function to update user object variables ( not firebase ) -- see updateUser() for firebase 
