@@ -9,7 +9,6 @@
 
     console.log(fn);
     console.log(ln);
-    console.log(email);
     console.log(gender);
     console.log(age);
     console.log(bio);
@@ -17,7 +16,7 @@
     console.log("Finish Logging");
 
     //Testing on updating user into firebase
-    var su = new users(fn, ln);
+    var su = new users(userid, fn, ln);
     su.editUser(userid, fn, ln, gender, age, bio);
     su.updateUser(fn, ln, gender, age, bio);
 
