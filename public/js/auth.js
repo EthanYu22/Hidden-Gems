@@ -36,7 +36,7 @@ $('#signup-btn').click(function () {
   // Create the user
   firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
     // TODO: Put a message to congrat users that they've signed up
-      console.log("Successfully created account!");
+      alert ("Successfully created account!");
 
       var id = user.uid;
       var id = new users(firstname, lastname, email);
@@ -46,7 +46,7 @@ $('#signup-btn').click(function () {
       id.printUser();
       
   }, function(error) {
-    console.error("Error " + error.code + " - " + error.message);
+    alert ("Error " + error.code + " - " + error.message);
   })
 
   // Creating the Object - pass in required parameters
@@ -76,7 +76,7 @@ $('#login-btn').click(function () {
   }, function(error) {
     // If any error reported
     // TODO: Put some error on the screen
-    console.error("Error " + error.code + " - " + error.message);
+    alert("Error " + error.code + " - " + error.message);
   })
 })
 
@@ -86,27 +86,7 @@ $("#signout-btn").click(function () {
   firebase.auth().signOut().then(function() {
     // Successfully signed out
       window.location.href = './index.html';
-      console.log("Successfully logged out");
   }, function(error) {
-    console.error("Error - Something went wrong while signing out.");
+    alert("Error - Something went wrong while signing out.");
   });
 })
-
-// Change Password Button
-$("#pass-btn").click(function () {
-    console.log("changing password");
-    var newpassword = $("#user-pass").val();
-    su.updatePassword(newpassword);
-});
-
-//Delete User Button
-$("#del-btn").click(function () {
-    console.log("Deleting this user");
-    su.deleteUser();
-    console.log("Successfully deleted user");
-    }, function(error) {
-        console.log("An error has occurred. Please re-log in.");
-});
-
-
-
