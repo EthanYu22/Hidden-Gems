@@ -11,7 +11,7 @@
 
 // Constructor 
 var users = function(id, firstname, lastname) {
-	this.id = null;
+	this.id = id || null;
 	this.firstname = firstname || "";
 	this.lastname = lastname || "";
 };

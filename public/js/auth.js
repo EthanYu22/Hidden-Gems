@@ -39,11 +39,12 @@ $('#signup-btn').click(function () {
       alert ("Successfully created account!");
 
       var id = user.uid;
-      var id = new users(firstname, lastname, email);
+      var user = new users(id, firstname, lastname);
+      user.updateUser (firstname, lastname, "", "", "");
 
       console.log(user);
       console.log(id.val);
-      id.printUser();
+      user.printUser();
       
   }, function(error) {
     alert ("Error " + error.code + " - " + error.message);
